@@ -106,11 +106,12 @@ Wordのレイアウト枠は不安定で,  ちょっとした操作で配置が�
 % --- コード挿入のサンプル
 \begin{minipage}{0.95\linewidth}
 \begin{lstlisting}[language=Python,caption={コードのキャプションはこちら.},label={code:helloworld}]
-def hello_world():
-    print("Hellow World!")  # basic Hello World print
+def hello_world(name: str = "") -> None:
+    print(f"Hellow World! {name}")  # basic Hello World print with given name
 
 if __name__ == "__main__":
     hello_world()
+    hello_world("Alice")
 \end{lstlisting}
 \end{minipage}
 

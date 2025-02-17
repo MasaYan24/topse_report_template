@@ -98,10 +98,13 @@
 \renewcommand{\subparagraphautorefname}{小段落}
 
 % --- 以下で lstlistings でコードを書く際の見た目を定義
+\newsavebox\lstcustomredarrow  % 自動改行時の矢印を収納する箱を準備
+\sbox\lstcustomredarrow{\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}}}  % 箱の中に矢印を格納
 \lstset{
   basicstyle=\footnotesize\fontspec{Fira Code},
   columns=fixed,  % 等幅
   basewidth=0.5em,  % 字間詰め
+  breakindent=0em,  % 自動改行後のインデント量
   numbers=left,  % 行番号表示
   numberstyle=\tiny\color{gray},  % 行番号サイズ・色
   breaklines=true,  % 自動改行
@@ -112,6 +115,7 @@
   keywordstyle=[2]{\color{VioletRed}},  % 組み込み関数
   stringstyle={\color{FireBrick}},  % 文字列
   commentstyle={\color{SeaGreen}},  % コメント文
+  postbreak=\usebox\lstcustomredarrow,  % 自動改行後に矢印を表示
 }
 
 % --- 以下で図、表、コードの番号ルール変更
