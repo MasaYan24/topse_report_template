@@ -1,0 +1,129 @@
+\documentclass[a4paper,9pt]{extarticle}
+\usepackage{topse}  % topse 用のフォーマットとよく使うパッケージの読み込み
+
+% ----- プリアンブルに著者情報など定義 -----
+\addauthor{学籍番号}{日本語著者氏名}{Author English Name}{日本語所属}
+\addauthor{学籍番号2}{著者2}{Author2}{所属2}
+\addauthor{20xx}{yyyy}{zzzz}{wwww}
+
+\addtitle{表題\par 副題 (オプション)}{Title\par Subtitle (optional)}
+
+
+\addabstract{%
+文章本文は Microsoft\textsuperscript{\textregistered} Word 用のレポートテンプレートについての文章をコピーしているので本文章に直接適用できない部分があります.  適宜読み替えて本 LuaLaTeX テンプレートをお使いください.  日本語アブストラクト日本語アブストラクト日本語アブストラクト日本語アブストラクト日本語アブストラクト日本語アブストラクト日本語アブストラクト日本語アブストラクト日本語アブストラクト日本語アブストラクト日本語アブストラクト日本語アブストラクト日本語アブストラクト日本語アブストラクト
+}{%
+The text of this document is copied from a report template designed for Microsoft\textsuperscript{\textregistered} Word,  so some parts may not be directly applicable.  Please adapt it as needed when using this LuaLaTeX template.  English Abstract English Abstract English Abstract English Abstract English Abstract English Abstract English Abstract English Abstract English Abstract English Abstract English Abstract English Abstract English Abstract English Abstract English Abstract English Abstract English%
+}%
+% ----- 著者情報など終わり ----/
+
+\begin{document}
+
+\maketitle
+
+\begin{multicols}{2}
+
+\section{はじめに}
+冒頭の表題部分は, 1列の表になっていて, 日本語の表題・著者・アブストラクト, 英語の表題・著者・アブストラクトを書くための6行があります. 
+
+\section{文書体裁ついて}
+
+\subsection{テキストのレイアウトについて}
+本文は二段組み, 標準スタイル(9pt, 行間隔は13pt. MSP明朝+Times Roman)になっています.  
+各段落は段落頭にインデントがつきます. これは標準スタイルにインデントが設定されているためです. パラグラフの頭でBackspaceを押すと, このインデントを局所的に削除できます. 
+
+\subsection{句読点について}
+句読点には｢, ｣, ｢. ｣でなく, ｢,｣, ｢.｣を使います. 
+
+\subsection{著者所属について}
+WordはTeXのように段と同じ幅の脚注を入れることができないため, 著者所属を脚注を使って入れようとすると2段分の幅の脚注が作られ右側の空いた体裁の悪いものになってしまいます. そのため, この段の下にレイアウト枠を置き, そこに手で著者所属を書くという方法を採っています. この場合ダガーなどの記号は自分で書く必要があります. TeXのように自動的にはできません. 
+
+Wordのレイアウト枠は不安定で,  ちょっとした操作で配置が換わってしまうことがあるのでご注意ください. 現在の設定は
+
+\noindent
+\begin{tabularx}{\linewidth}{|X|X|}
+    \hline
+    幅 & 固定の 72 mm \\
+    \hline
+    高さ & 自動 \\
+    \hline
+    水平配置 & 段基準の左 \\
+    \hline
+    垂直配置 & 余白基準の右 \\
+    \hline
+\end{tabularx}
+となっています. 配置が狂った場合は[書式]-[レイアウト枠]で上記の配置を設定すれば元に戻ります. 
+
+\subsection{参考文献について}
+参考文献記載用に｢参考文献｣スタイルが定義されています. TeXのように相互参照で自動的に番号を付けるには, ブックマークと相互参照を使う方法があります. 以下はXp版の方法です. 
+
+\begin{enumerate}
+    \item 段落番号付きの箇条書きの作成：　[書式]-[箇条書きと段落番号]のダイアログで[段落番号]を選択し, [変更]で参考文献の段落番号形式にします. 
+    \item ブックマークの設定：　文献を反転させ, [挿入]-[ブックマーク]でブックマークを設定します. 本稿の場合, 例えば, [Gomaa,  H. :Designing . l,  Addison-Wesley,  2000]にgomaaというブックマークを作成します. ブックマークを設定したことを表示したい場合は, [ツール]-[オプション]のダイアログで[表示]の[ブックマーク]をチェックします. 
+    \item 相互参照の設定：　本文で参考文献を引用する場合[挿入]-[参照]-[相互参照]のダイアログで[参照する項目]で[ブックマーク]を選択し, [相互参照の文字列]は[段落番号(内容は含まない)]にします. 次の分の論文の後で上記作業を行いgomaaを選ぶと「Gomaaの論文\cite{Gomaa}」とすることができます. 
+    \item 参考文献の番号, 順番の変更：　参考文献の番号に変更が生じた場合, 変更箇所が部分的である場合はその場所のみを, 全体に及ぶ場合は論文全体を選択し, 表示を反転させます. この状態で, 右クリックし, [フィールドの更新]を選択すると番号が変更されます. 
+\end{enumerate}
+
+
+\section{\LaTeX 用レポーティングサンプル}
+ここでは、元々の Microsoft\textsuperscript{\textregistered} Word 用テンプレートになかったが、\LaTeX で行うにはテクニックが必要な箇所を個別に説明します。逆に Word で難し良いところがこちらで簡単にできることも多いので、参考にしてみてください\cite{takahashi}。
+
+
+\subsection{図の挿入}
+図の入れ方が難しいのでベストプラクティスを共有します\autoref{fig:topselogo}. 
+
+% --- 図挿入のサンプル
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\includegraphics[width=0.5\linewidth]{image.png}
+\captionof{figure}{図のキャプションはこちら.}
+\label{fig:topselogo}
+\end{minipage}
+\end{center}
+
+\subsection{表の挿入}
+表の入れ方のベストプラクティスを共有します\autoref{tab:topsetable}
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering
+\captionof{table}{表のキャプションはこちら.}
+\noindent\begin{tabularx}{\linewidth}{|X|X|X|}  
+\hline
+\textbf{列 1} & \textbf{列 2} & \textbf{列 3} \\
+\hline
+要素 1 & 要素 2 & 要素 3 \\
+\hline
+要素 4 & 要素 5 & 要素 6 \\
+\hline
+\end{tabularx}
+\label{tab:topsetable}
+\end{minipage}
+\end{center}
+
+\subsection{コードの挿入}
+コードを表示したいこともあるので, フォーマットを整えて記載する方法を示します\autoref{code:helloworld}.
+
+% --- コード挿入のサンプル
+\begin{minipage}{0.95\linewidth}
+\begin{lstlisting}[language=Python,caption={コードのキャプションはこちら.},label={code:helloworld}]
+def hello_world():
+    print("Hellow World!")  # basic Hello World print
+
+if __name__ == "__main__":
+    hello_world()
+\end{lstlisting}
+\end{minipage}
+
+
+% --- 参考文献挿入
+\begin{thebibliography}{99}
+\bibitem{Gomaa} Gomaa,  H. :Designing Concurrent,  Distributed,  and Real-Time Applications With Uml, Addison-Wesley, 2000.
+\bibitem{白川} 白川 洋充,  竹垣 盛一,  システム制御情報学会編:リアルタイムシステムとその応用,   システム制御情報ライブラリー, 朝倉書店,  2001.
+\bibitem{topse} トップエスイーホームページ (URL 共有方法) \url{https://www.topse.jp}
+\bibitem{takahashi} このテンプレートの問い合わせ: 第 19 期生 髙橋雅裕 \href{mailto:dr.masahiro.takahashi@gmail.com}{dr.masahiro.takahashi@gmail.com}
+\end{thebibliography}
+
+\end{multicols}
+
+
+\end{document}

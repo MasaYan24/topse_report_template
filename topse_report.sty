@@ -1,0 +1,120 @@
+\usepackage{geometry}
+\geometry{
+  textwidth=452.0pt,  % article documentclass の a4paper twocolumn オプション 踏襲
+  columnsep=10.0pt,  % article documentclass の a4paper twocolumn オプション 踏襲
+}
+
+% 日本語使用対応 **LuaLaTeX 想定**
+\usepackage{fontspec}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+
+% よく使う便利なパッケージをまとめて記載
+\usepackage{graphicx}  % 図挿入
+\usepackage{tabularx}  % 表挿入
+\usepackage{caption}  % キャプションを拡張
+\usepackage{listings}  % コードを挿入
+\usepackage{url}  % URL をきれいに表示・ハイパーリング作成 (アンダーバーエスケープ)
+\usepackage{multicol}  % ページ途中の 2 段組みを実現
+\usepackage[svgnames]{xcolor}  % 色を拡張。色名前要素拡張
+\usepackage{hyperref}  % リンク作成
+\usepackage{indentfirst}  % セクションの最初のインデントを設定する
+\usepackage{chngcntr}  % figure, table, lstlistings の番号付けの変更
+
+% --- 以下で maketitle を再定義 (topse 用) ---
+\makeatletter
+
+\newcounter{authorfootnote}
+\newcommand{\addauthor}[4]{%
+  \stepcounter{authorfootnote}%
+  \ifcsname @authorlistja\endcsname
+    \protected@xdef\@temp{\csname @authorlistja\endcsname, #1 #2\footnote[\theauthorfootnote]{#4}}
+  \else
+    \protected@xdef\@temp{#1 #2\footnote[\theauthorfootnote]{#4}}
+  \fi
+  \global\expandafter\let\csname @authorlistja\endcsname\@temp
+  
+  \ifcsname @authorlisten\endcsname
+    \protected@xdef\@temp{\csname @authorlisten\endcsname, #1 #3\footnotemark[\theauthorfootnote]}
+  \else
+    \protected@xdef\@temp{#1 #3\footnotemark[\theauthorfootnote]}
+  \fi
+  \global\expandafter\let\csname @authorlisten\endcsname\@temp
+}
+
+\newcommand{\addtitle}[2]{%
+  \protected@xdef\@titleja{#1}
+  \protected@xdef\@titleen{#2}
+}
+
+\newcommand{\addabstract}[2]{
+  \protected@xdef\@abstractja{#1}
+  \protected@xdef\@abstracten{#2}
+}
+
+\renewcommand{\maketitle}{%
+  \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+  \onecolumn
+  \begin{center}
+    {\large \bfseries \@titleja \par} % 表題を大きく太字で表示
+    {\vspace{1.0em} \par} % 少し空白行を追加
+    {\@authorlistja \par} % 著者を少し大きく表示
+    \vspace{1.0em} % 少し空白行を追加
+    \begin{minipage}{0.8\textwidth}
+    {\@abstractja} % アブストラクトを表示
+    \end{minipage}
+    {\vspace{1.5em} \par}
+    {\large \bfseries \@titleen \par} % 表題を大きく太字で表示
+    \vspace{1.0em} % 少し空白行を追加
+    {\@authorlisten \par} % 著者を少し大きく表示
+    \vspace{1.0em} % 少し空白行を追加
+    \begin{minipage}{0.8\textwidth}
+    {\@abstracten} % アブストラクトを表示
+    \end{minipage}
+  \end{center}
+  \vspace{2em}
+  \renewcommand{\thefootnote}{\arabic{footnote}} % 脚注を数値に変更
+}
+\makeatother
+
+\setlength{\parindent}{1em}  % 字下げ量定義
+
+% --- 以下で日本語のタイトル定義
+\renewcommand{\refname}{参考文献}
+\renewcommand{\figurename}{図}
+\renewcommand{\tablename}{表}
+\renewcommand{\lstlistingname}{コード}
+
+% --- 以下で \autoref の際の名前定義
+\renewcommand{\figureautorefname}{図}
+\renewcommand{\tableautorefname}{表}
+\newcommand{\lstlistingautorefname}{コード}
+
+\renewcommand{\chapterautorefname}{章}
+\renewcommand{\sectionautorefname}{節}
+\renewcommand{\subsectionautorefname}{小節}
+\renewcommand{\subsubsectionautorefname}{小々節}
+\renewcommand{\paragraphautorefname}{段落}
+\renewcommand{\subparagraphautorefname}{小段落}
+
+% --- 以下で lstlistings でコードを書く際の見た目を定義
+\lstset{
+  basicstyle=\footnotesize\fontspec{Fira Code},
+  columns=fixed,  % 等幅
+  basewidth=0.5em,  % 字間詰め
+  numbers=left,  % 行番号表示
+  numberstyle=\tiny\color{gray},  % 行番号サイズ・色
+  breaklines=true,  % 自動改行
+  breakatwhitespace=false,  % 空白での改行強制無効化
+  frame=tlrb,  % 外枠表示 top left right bottom
+  backgroundcolor=\color{WhiteSmoke},  % 背景色
+  keywordstyle=[1]{\color{RoyalBlue}},  % 予約語
+  keywordstyle=[2]{\color{VioletRed}},  % 組み込み関数
+  stringstyle={\color{FireBrick}},  % 文字列
+  commentstyle={\color{SeaGreen}},  % コメント文
+}
+
+% --- 以下で図、表、コードの番号ルール変更
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+\AtBeginDocument{\counterwithin{lstlisting}{section}}
