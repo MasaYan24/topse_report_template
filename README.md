@@ -18,7 +18,7 @@ Microsoft Word や google docs と比べ、LaTeX で作成すれば、内部参�
 - 環境設定に問題を感じている人は、[Overleaf](https://ja.overleaf.com/) を使うと良い。その場合は、メニューでコンパイラとして「LuaLaTeX」を選んで欲しい。本テンプレートの実行は Overleaf にて動作を検証した。
 - 内容物
    - `README.md`: 本説明ファイル。
-   - ｀image.png`: 画像ファイル。サンプルスクリプトの図挿入説明のために使用。
+   - `image.png`: 画像ファイル。サンプルスクリプトの図挿入説明のために使用。
    - `topse_report.sty`: スタイルファイル。このスタイルファイルを読み込むことで必要な設定は完了する。
    - `topse_report_template.pdf`: レポート完成ファイル。本テンプレートで作成できる完成ファイル。
    - `topse_report_template.tex`: レポートソースファイル。原稿そのもの。これを編集する。
