@@ -60,7 +60,7 @@ Microsoft Word や google docs と比べ、LaTeX で作成すれば、内部参�
 
 ## Credit
 
-本テンプレートは、第19期生の髙橋雅裕 (dr.masahiro.takahashi@gmail.com) が作成しました。
+[本テンプレート](https://github.com/MasaYan24/topse_report_template) は、第 19 期生の髙橋雅裕 (dr.masahiro.takahashi@gmail.com) が作成しました。
 
 本テンプレートは MIT ライセンスで公開されており、無保証で提供されます。テンプレートの利用により生じたいかなる損害についても、作者は責任を負いません。
 
