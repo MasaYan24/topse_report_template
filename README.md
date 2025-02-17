@@ -23,7 +23,7 @@ Microsoft Word や google docs と比べ、LaTeX で作成すれば、内部参�
    - `topse_report_template.pdf`: レポート完成ファイル。本テンプレートで作成できる完成ファイル。
    - `topse_report_template.tex`: レポートソースファイル。原稿そのもの。これを編集する。
 
-## How to
+## How to Test
 
 動作確認は以下で行ってください。
 
@@ -37,6 +37,26 @@ Microsoft Word や google docs と比べ、LaTeX で作成すれば、内部参�
 5. できた PDF がきれいに表示されていることを確認。
 
 動作確認が終われば、`topse_report_template.tex`の内容を参考に、ご自身 / チームのレポートを作成してください。Good Luck!
+
+## How to modify
+
+基本的に、`topse_report_template.tex` を編集してください。
+
+タイトルページだけ特殊なので以下にフォーマットを説明しておきます。
+以下のものをプリアンブルに書いてください。
+
+- `\addauthor`: 著者情報を以下の形式で記載します。チームの場合はメンバーの数だけ書きます。
+  ```latex
+  \adduser{学籍番号}{日本語氏名}{英語氏名}{日本語所属}
+  ```
+- `\addtitle`: タイトルを入力します。改行したい場合は `\par` (パラグラフ改行) を使います。通常は 1 行で良いと思います。
+  ```latex
+  \addtitle{日本語タイトル}{英語タイトル}
+  ```
+- `\addabstract`: アブストラクトを入力します。
+  ```latex
+  \addabstract{日本語アブストラクト}{英語アブストラクト}
+  ```
 
 ## Credit
 
